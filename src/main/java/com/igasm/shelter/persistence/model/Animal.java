@@ -1,11 +1,18 @@
 package com.igasm.shelter.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.igasm.shelter.springConfig.CustomLocalDateSerializer;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Animal {
@@ -19,7 +26,8 @@ public class Animal {
 
   private Species species;
 
-  private LocalDateTime registrationDate;
+  @JsonSerialize(using = CustomLocalDateSerializer.class)
+  private LocalDate registrationDate;
 
   private String registrationNumber;
 
@@ -27,7 +35,7 @@ public class Animal {
   private Animal(){
   }
 
-  public Animal(String name, Species species, LocalDateTime registrationDate, String registrationNumber){
+  public Animal(String name, Species species, LocalDate registrationDate, String registrationNumber){
     this.name = name;
     this.species = species;
     this.registrationDate = registrationDate;
@@ -54,11 +62,11 @@ public class Animal {
     this.species = species;
   }
 
-  public LocalDateTime getRegistrationDate() {
+  public LocalDate getRegistrationDate() {
     return registrationDate;
   }
 
-  public void setRegistrationDate(LocalDateTime registrationDate) {
+  public void setRegistrationDate(LocalDate registrationDate) {
     this.registrationDate = registrationDate;
   }
 

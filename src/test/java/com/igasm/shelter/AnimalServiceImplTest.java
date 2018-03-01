@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,9 +29,9 @@ public class AnimalServiceImplTest {
   public void testAddingAnimal(){
     String name = "Burek";
     Species species = Species.DOG;
-    LocalDateTime dateTime = LocalDateTime.now();
+    LocalDate date = LocalDate.now();
     String registrationNumber = "SP/1/03/2018";
-    Animal animal = new Animal(name, species, dateTime, registrationNumber);
+    Animal animal = new Animal(name, species, date, registrationNumber);
     animalService.addAnimal(animal);
     List<Animal> animals = animalService.listAnimals();
 
@@ -42,9 +42,9 @@ public class AnimalServiceImplTest {
   public void testUpdatingAnimal(){
     //given
     String name = "Trik";
-    LocalDateTime dateTime = LocalDateTime.now();
+    LocalDate date = LocalDate.now();
     String registrationNumber = "SP/2/03/2018";
-    Animal animal = new Animal(name, Species.DOG, dateTime, registrationNumber);
+    Animal animal = new Animal(name, Species.DOG, date, registrationNumber);
     animalService.addAnimal(animal);
     //when
     animal.setSpecies(Species.CAT);
@@ -59,7 +59,7 @@ public class AnimalServiceImplTest {
     softAssertions.assertThat(animals.size()).isEqualTo(1);
     softAssertions.assertThat(animals.get(0).getName()).isEqualTo(name);
     softAssertions.assertThat(animals.get(0).getSpecies()).isEqualTo(Species.CAT);
-    softAssertions.assertThat(animals.get(0).getRegistrationDate()).isEqualTo(dateTime);
+    softAssertions.assertThat(animals.get(0).getRegistrationDate()).isEqualTo(date);
     softAssertions.assertThat(animals.get(0).getRegistrationNumber()).isEqualTo(registrationNumber);
     softAssertions.assertAll();
   }
@@ -68,7 +68,7 @@ public class AnimalServiceImplTest {
   public void deleteAnimal(){
     //given
     String registrationNumber = "SP/3/03/2018";
-    Animal animal = new Animal("Tymon", Species.CAT, LocalDateTime.now(), registrationNumber);
+    Animal animal = new Animal("Tymon", Species.CAT, LocalDate.now(), registrationNumber);
     animalService.addAnimal(animal);
     //when
     animalService.deleteAnimal(animal);

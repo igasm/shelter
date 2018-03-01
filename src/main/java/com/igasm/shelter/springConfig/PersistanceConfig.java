@@ -21,7 +21,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource({"classpath:database.properties"})
+@PropertySource({"classpath:database.properties", "classpath:application.properties"})
 @ComponentScan({"com.igasm.shelter.persistence"})
 public class PersistanceConfig {
 

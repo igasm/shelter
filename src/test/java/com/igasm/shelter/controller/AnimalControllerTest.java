@@ -9,13 +9,17 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.nio.charset.Charset;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.hamcrest.Matchers.*;
@@ -49,14 +53,22 @@ public class AnimalControllerTest {
   @Test
   public void testGetAnimals() throws Exception {
 
+    LocalDate date = LocalDate.now();
+
     Animal dog = new Animal("Burek",
         Species.DOG,
-        LocalDateTime.now(),
+        date,
         "SP/1/2018");
+
+    animalService.addAnimal(dog);
 
     this.mockMvc.perform(get("/animal"))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$[0].name", is("Burek")));
+        .andExpect(jsonPath("$", hasSize(1)))
+        .andExpect(jsonPath("$[0].name", is("Burek")))
+        .andExpect(jsonPath("$[0].species", is(Species.DOG.toString())))
+        .andExpect(jsonPath("$[0].registrationNumber", is("SP/1/2018")))
+        .andExpect(jsonPath("$[0].registrationDate", is(date.toString())));
 
     animalService.deleteAnimal(dog);
 
