@@ -6,7 +6,7 @@ import com.igasm.shelter.persistence.model.Species;
 import java.util.List;
 
 public interface AnimalDAO {
-  void addAnimal(Animal animal);
+  long addAnimal(Animal animal);
   void updateAnimal(Animal animal);
   void deleteAnimal(Animal animal);
   void deleteAnimalById(int id);

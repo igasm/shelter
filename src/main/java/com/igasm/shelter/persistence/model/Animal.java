@@ -34,6 +34,10 @@ public class Animal {
     this.registrationNumber = registrationNumber;
   }
 
+  public int getId() {
+    return id;
+  }
+
   public String getName() {
     return name;
   }

@@ -19,10 +19,10 @@ public class AnimalDAOImpl implements AnimalDAO {
   }
 
   @Override
-  public void addAnimal(Animal animal) {
+  public long addAnimal(Animal animal) {
     Session session = this.sessionFactory.getCurrentSession();
     session.persist(animal);
-
+    return animal.getId();
   }
 
   @Override

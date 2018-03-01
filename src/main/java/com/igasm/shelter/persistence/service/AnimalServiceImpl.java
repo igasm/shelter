@@ -22,8 +22,8 @@ public class AnimalServiceImpl implements AnimalService {
   }
 
   @Override
-  public void addAnimal(Animal animal) {
-    animalDAO.addAnimal(animal);
+  public long addAnimal(Animal animal) {
+    return animalDAO.addAnimal(animal);
   }
 
   @Override
