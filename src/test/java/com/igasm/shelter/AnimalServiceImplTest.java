@@ -4,7 +4,7 @@ package com.igasm.shelter;
 import com.igasm.shelter.persistence.model.Animal;
 import com.igasm.shelter.persistence.model.Species;
 import com.igasm.shelter.persistence.service.AnimalService;
-import com.igasm.shelter.springConfig.PersistanceConfig;
+import com.igasm.shelter.springConfig.PersistenceConfig;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(org.springframework.test.context.junit4.SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = PersistanceConfig.class, loader = AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = PersistenceConfig.class, loader = AnnotationConfigContextLoader.class)
 public class AnimalServiceImplTest {
 
   @Autowired

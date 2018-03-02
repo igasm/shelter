@@ -4,7 +4,7 @@ import com.igasm.shelter.MvcConfiguration;
 import com.igasm.shelter.persistence.model.Animal;
 import com.igasm.shelter.persistence.model.Species;
 import com.igasm.shelter.persistence.service.AnimalService;
-import com.igasm.shelter.springConfig.PersistanceConfig;
+import com.igasm.shelter.springConfig.PersistenceConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(org.springframework.test.context.junit4.SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {PersistanceConfig.class, MvcConfiguration.class})
+@ContextConfiguration(classes = {PersistenceConfig.class, MvcConfiguration.class})
 @WebAppConfiguration
 public class AnimalControllerTest {
 

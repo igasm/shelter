@@ -23,7 +23,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @PropertySource({"classpath:database.properties", "classpath:application.properties"})
 @ComponentScan({"com.igasm.shelter.persistence"})
-public class PersistanceConfig {
+public class PersistenceConfig {
 
   @Autowired
   private Environment env;

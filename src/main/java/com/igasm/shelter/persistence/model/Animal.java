@@ -1,9 +1,9 @@
 package com.igasm.shelter.persistence.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.igasm.shelter.springConfig.CustomLocalDateDeserializer;
 import com.igasm.shelter.springConfig.CustomLocalDateSerializer;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Animal {
@@ -27,6 +25,7 @@ public class Animal {
   private Species species;
 
   @JsonSerialize(using = CustomLocalDateSerializer.class)
+  @JsonDeserialize(using = CustomLocalDateDeserializer.class)
   private LocalDate registrationDate;
 
   private String registrationNumber;
