@@ -30,8 +30,8 @@ public class Animal {
 
   private String registrationNumber;
 
-  //for hibernate
-  private Animal(){
+  //for hibernate, need to be public to make session.load method work
+  public Animal(){
   }
 
   public Animal(String name, Species species, LocalDate registrationDate, String registrationNumber){

@@ -27,7 +27,7 @@ public class AnimalController {
   @PostMapping("/animal")
   public ResponseEntity<?> save(@RequestBody Animal animal){
     long id = animalService.addAnimal(animal);
-    return ResponseEntity.ok().body("New animal has bee saved with id:" + id);
+    return ResponseEntity.ok().body("New animal has been saved with id:" + id);
   }
 
   @GetMapping("/animal/{id}")

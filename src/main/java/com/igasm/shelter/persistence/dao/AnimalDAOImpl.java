@@ -47,7 +47,7 @@ public class AnimalDAOImpl implements AnimalDAO {
   @Override
   public Animal getAnimalById(int id) {
     Session session = this.sessionFactory.getCurrentSession();
-    Animal animal = session.load(Animal.class, new Integer(id));
+    Animal animal = session.get(Animal.class, id);
     return animal;
   }
 

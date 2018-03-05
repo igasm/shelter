@@ -14,9 +14,7 @@ public class AnimalTest {
   @Test
   public void whenUsingCustomLocalDateSerializer() throws JsonProcessingException {
     LocalDate date = LocalDate.of(2018, 03, 01);
-
     Animal animal = new Animal("Burek", Species.DOG, date, "SP/5/03/2018");
-
     ObjectMapper mapper = new ObjectMapper();
     String result = mapper.writeValueAsString(animal);
     assertThat(result).contains("2018-03-01");

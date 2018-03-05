@@ -80,4 +80,15 @@ public class AnimalServiceImplTest {
     assertThat(animals.size()).isEqualTo(0);
   }
 
+  @Test
+  public void testGettingAnimalById(){
+    //given
+    Animal newAnimal = new Animal("Trick", Species.HORSE, LocalDate.now(), "SP/4/03/2018");
+    //when
+    long id = animalService.addAnimal(newAnimal);
+    //then
+    Animal animal = animalService.getAnimalById((int) id);
+    assertThat(animal).isEqualTo(newAnimal);
+  }
+
 }
