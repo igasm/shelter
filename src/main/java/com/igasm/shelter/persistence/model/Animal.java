@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.igasm.shelter.springConfig.CustomLocalDateDeserializer;
 import com.igasm.shelter.springConfig.CustomLocalDateSerializer;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,13 +13,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
-@Entity
+@Document(collection = "animals")
 public class Animal {
 
   @Id
-  @Column(name="id")
-  @GeneratedValue(strategy= GenerationType.IDENTITY)
-  private int id;
+  private String id;
 
   private String name;
 
@@ -41,8 +40,11 @@ public class Animal {
     this.registrationNumber = registrationNumber;
   }
 
-  public int getId() {
+  public String getId() {
     return id;
+  }
+  public void setId(String id) {
+    this.id = id;
   }
 
   public String getName() {
