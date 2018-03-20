@@ -1,38 +1,18 @@
 package com.igasm.shelter.controller;
 
-import com.igasm.shelter.persistence.model.Animal;
-import com.igasm.shelter.persistence.service.AnimalService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.google.gson.Gson;
+import com.igasm.shelter.JsonTransformer;
+import com.igasm.shelter.services.AnimalService;
 
-import java.util.List;
+import static spark.Spark.get;
 
-@RestController
 public class AnimalController {
 
-  @Autowired
-  private AnimalService animalService;
+    public AnimalController(final AnimalService animalService) {
 
-  @GetMapping("/animal")
-  public ResponseEntity<List<Animal>> getAll(){
-    List<Animal> animals = animalService.listAnimals();
-    return ResponseEntity.ok().body(animals);
-  }
-
-  @PostMapping("/animal")
-  public ResponseEntity<?> save(@RequestBody Animal animal){
-    long id = animalService.addAnimal(animal);
-    return ResponseEntity.ok().body("New animal has been saved with id:" + id);
-  }
-
-  @GetMapping("/animal/{id}")
-  public ResponseEntity<Animal> get(@PathVariable("id") int id){
-    Animal animal = animalService.getAnimalById(id);
-    return ResponseEntity.ok().body(animal);
-  }
+        get("/animals",
+                (req, res) -> animalService.getAll(),
+                new JsonTransformer(new Gson())
+        );
+    }
 }
