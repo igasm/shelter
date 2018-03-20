@@ -49,10 +49,7 @@ public class AnimalControllerTest {
   public void setup() {
     this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     this.date = LocalDate.now();
-    this.dog = new Animal("Burek",
-        Species.DOG,
-        date,
-        "SP/1/2018");
+    this.dog = new Animal("Burek", Species.DOG, date);
     this.animalId = animalService.addAnimal(dog);
   }
 
@@ -69,7 +66,6 @@ public class AnimalControllerTest {
         .andExpect(jsonPath("$", hasSize(1)))
         .andExpect(jsonPath("$[0].name", is("Burek")))
         .andExpect(jsonPath("$[0].species", is(Species.DOG.toString())))
-        .andExpect(jsonPath("$[0].registrationNumber", is("SP/1/2018")))
         .andExpect(jsonPath("$[0].registrationDate", is(date.toString())));
   }
 
@@ -79,7 +75,6 @@ public class AnimalControllerTest {
         .andExpect(status().isOk())
         .andExpect(jsonPath("name", is("Burek")))
         .andExpect(jsonPath("species", is(Species.DOG.toString())))
-        .andExpect(jsonPath("registrationNumber", is("SP/1/2018")))
         .andExpect(jsonPath("registrationDate", is(date.toString())));
   }
 
